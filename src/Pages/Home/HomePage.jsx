@@ -46,15 +46,10 @@ function HomePage() {
                 </Button>
               </Link>
             </Col>
-            {/* <Col className="select-game__selector">
-              <Link to="/find-number-by-word">
-                <Button className="select-game__text" variant="primary">
-                  Žaidimai su žodžiais
-                </Button>
-              </Link>
-            </Col> */}
           </Row>
         </Container>
       </div>
     )
 }
+
+export default HomePage;
