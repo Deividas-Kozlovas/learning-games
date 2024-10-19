@@ -1,0 +1,19 @@
+.background {
+  height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), hsla(0, 0%, 0%, 1)),
+    url(../../../../Images/Background/find-numbers-up-to-ten-background.jpg)
+      center center / cover no-repeat;
+
+  .card {
+    margin: 10px;
+    background-color: rgb(126, 126, 228);
+    top: 20px;
+    &-text {
+      height: 20vh;
+      font-size: 5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

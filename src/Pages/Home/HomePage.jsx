@@ -8,7 +8,7 @@ function HomePage() {
         <Container className="select-game__container">
           <Row>
             <Col className="select-game__selector">
-              <Link to="/find-number-by-word">
+              <Link to="/find-numbers-up-to-ten">
                 <Button className="select-game__text" variant="primary">
                   Žaidimai su skaičiais
                 </Button>
