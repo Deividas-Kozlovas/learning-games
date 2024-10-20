@@ -8,6 +8,18 @@ import {
 } from "./FindNumversUpToTenData.tsx";
 
 const FindNumbersUpToTen = () => {
+  const CARDS_PER_ROW = 3;
+
+  const chunkArray = <T,>(array: T[], chunkSize: number): T[][] => {
+    const result: T[][] = [];
+    for (let i = 0; i < array.length; i += chunkSize) {
+      result.push(array.slice(i, i + chunkSize));
+    }
+    return result;
+  };
+
+  const numbersChunks = chunkArray<number>(numbersToShowOnCards, CARDS_PER_ROW);
+
   return (
     <div className="background">
       <ProgressBar animated now={1} />
@@ -21,17 +33,19 @@ const FindNumbersUpToTen = () => {
             </Card>
           </Col>
         </Row>
-        <Row>
-          {numbersToShowOnCards.map((card, rowIndex) => (
-            <Col>
-              <Card key={`card-${rowIndex}`}>
-                <Card.Body>
-                  <Card.Text>{card}</Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))}
-        </Row>
+        {numbersChunks.map((chunk, rowIndex) => (
+          <Row key={`row-${rowIndex}`}>
+            {chunk.map((card, cardIndex) => (
+              <Col key={`card-${rowIndex}-${cardIndex}`}>
+                <Card>
+                  <Card.Body>
+                    <Card.Text>{card}</Card.Text>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        ))}
       </Container>
     </div>
   );
