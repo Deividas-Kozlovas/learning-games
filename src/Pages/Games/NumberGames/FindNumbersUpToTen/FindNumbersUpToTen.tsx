@@ -2,6 +2,10 @@ import React from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import "./FindNumbersUpToTenStyles.scss";
+import {
+  numbersToFindInWords,
+  numbersToShowOnCards,
+} from "./FindNumversUpToTenData.tsx";
 
 const FindNumbersUpToTen = () => {
   return (
@@ -12,79 +16,21 @@ const FindNumbersUpToTen = () => {
           <Col>
             <Card>
               <Card.Body>
-                <Card.Text>Find this number one</Card.Text>
+                <Card.Text>{numbersToFindInWords[0]}</Card.Text>
               </Card.Body>
             </Card>
           </Col>
         </Row>
         <Row>
-          <Col>
-            <Card>
-              <Card.Body>
-                <Card.Text>1</Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col>
-            <Card>
-              <Card.Body>
-                <Card.Text>1</Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col>
-            <Card>
-              <Card.Body>
-                <Card.Text>1</Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <Card>
-              <Card.Body>
-                <Card.Text>1</Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col>
-            <Card>
-              <Card.Body>
-                <Card.Text>1</Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col>
-            <Card>
-              <Card.Body>
-                <Card.Text>1</Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <Card>
-              <Card.Body>
-                <Card.Text>1</Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col>
-            <Card>
-              <Card.Body>
-                <Card.Text>1</Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col>
-            <Card>
-              <Card.Body>
-                <Card.Text>1</Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
+          {numbersToShowOnCards.map((card, rowIndex) => (
+            <Col>
+              <Card key={`card-${rowIndex}`}>
+                <Card.Body>
+                  <Card.Text>{card}</Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
         </Row>
       </Container>
     </div>
