@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import "./FindNumbersUpToTenStyles.scss";
@@ -6,9 +6,12 @@ import {
   numbersToFindInWords,
   numbersToShowOnCards,
 } from "./FindNumversUpToTenData.tsx";
+import { Prev } from "react-bootstrap/esm/PageItem";
 
 const FindNumbersUpToTen = () => {
   const CARDS_PER_ROW = 3;
+
+  const [currentNumber, setCurrentNumber] = useState<number>(0);
 
   const chunkArray = <T,>(array: T[], chunkSize: number): T[][] => {
     const result: T[][] = [];
@@ -18,17 +21,28 @@ const FindNumbersUpToTen = () => {
     return result;
   };
 
-  const numbersChunks = chunkArray<number>(numbersToShowOnCards, CARDS_PER_ROW);
+  const numbersChunks = chunkArray<number>(
+    numbersToShowOnCards.slice(0, 9),
+    CARDS_PER_ROW
+  );
+
+  function numberClicked(card: number): void {
+    if (card === currentNumber + 1) {
+      setCurrentNumber((prevNumber) => prevNumber + 1);
+    } else {
+      console.log("incorect");
+    }
+  }
 
   return (
     <div className="background">
-      <ProgressBar animated now={1} />
+      <ProgressBar animated now={currentNumber * 10} />
       <Container>
         <Row>
           <Col>
             <Card>
               <Card.Body>
-                <Card.Text>{numbersToFindInWords[0]}</Card.Text>
+                <Card.Text>{numbersToFindInWords[currentNumber]}</Card.Text>
               </Card.Body>
             </Card>
           </Col>
@@ -39,7 +53,9 @@ const FindNumbersUpToTen = () => {
               <Col key={`card-${rowIndex}-${cardIndex}`}>
                 <Card>
                   <Card.Body>
-                    <Card.Text>{card}</Card.Text>
+                    <Card.Text onClick={() => numberClicked(card)}>
+                      {card}
+                    </Card.Text>
                   </Card.Body>
                 </Card>
               </Col>
