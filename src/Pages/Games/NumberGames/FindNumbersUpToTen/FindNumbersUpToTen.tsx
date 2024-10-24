@@ -27,10 +27,14 @@ const FindNumbersUpToTen = () => {
   );
 
   function numberClicked(card: number): void {
-    if (card === currentNumber + 1) {
-      setCurrentNumber((prevNumber) => prevNumber + 1);
+    if (currentNumber === 9) {
+      setCurrentNumber(0);
     } else {
-      console.log("incorect");
+      if (card === currentNumber + 1) {
+        setCurrentNumber((prevNumber) => prevNumber + 1);
+      } else {
+        console.log("incorect");
+      }
     }
   }
 

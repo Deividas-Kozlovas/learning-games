@@ -5,12 +5,11 @@
       center center / cover no-repeat;
 
   .card {
-    margin: 10px;
     background-color: rgb(126, 126, 228);
-    top: 20px;
+    margin-top: 2vh;
     &-text {
       height: 16vh;
-      font-size: 5vw;
+      font-size: 60px;
       display: flex;
       justify-content: center;
       align-items: center;
