@@ -6,7 +6,6 @@ import {
   numbersToFindInWords,
   numbersToShowOnCards,
 } from "./FindNumversUpToTenData.tsx";
-import { Prev } from "react-bootstrap/esm/PageItem";
 import { chunkArray } from "../../../../Helpers/ArrayHelper.tsx";
 import CardComponent from "../../../../Components/CardComponent/CardComponent.tsx";
 
