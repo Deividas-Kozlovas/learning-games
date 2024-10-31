@@ -8,10 +8,10 @@ export const chunkArray = <T,>(array: T[], chunkSize: number): T[][] => {
 
 export function shuffleArray(arrayToShuffle: number[]): number[] {
   const shuffledArray = [...arrayToShuffle];
-  const arrayLength = arrayToShuffle.length;
+  const arrayLength = shuffledArray.length;
 
-  for (let i = 0; i < arrayLength; i++) {
-    const randomIndex = Math.floor(Math.random() * (arrayLength - 1)) + 1;
+  for (let i = arrayLength - 1; i > 0; i--) {
+    const randomIndex = Math.floor(Math.random() * (i + 1));
     [shuffledArray[i], shuffledArray[randomIndex]] = [
       shuffledArray[randomIndex],
       shuffledArray[i],
@@ -23,7 +23,8 @@ export function shuffleArray(arrayToShuffle: number[]): number[] {
 
 export function addUniqueValueToArray(array: number[], valueToAdd: number) {
   if (!array.includes(valueToAdd)) {
-    array[array.length - 1] = valueToAdd; // Add the value to the last index for consistency
+    const index = Math.floor(Math.random() * array.length);
+    array[index] = valueToAdd;
   }
   return array;
 }
