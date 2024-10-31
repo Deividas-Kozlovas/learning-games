@@ -8,11 +8,13 @@ import {
 } from "./FindNumversUpToTenData.tsx";
 import { chunkArray } from "../../../../Helpers/ArrayHelper.tsx";
 import CardComponent from "../../../../Components/CardComponent/CardComponent.tsx";
+import FeedbackMessageComponent from "../../../../Components/FeedbackMessageComponent/FeedbackMessageComponent.tsx";
 
 const FindNumbersUpToTen = () => {
   const CARDS_PER_ROW = 3;
 
   const [currentNumber, setCurrentNumber] = useState<number>(0);
+  const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
 
   const numbersChunks = chunkArray<number>(
     numbersToShowOnCards.slice(0, 9),
@@ -25,8 +27,9 @@ const FindNumbersUpToTen = () => {
     } else {
       if (card === currentNumber + 1) {
         setCurrentNumber((prevNumber) => prevNumber + 1);
+        setIsCorrect(true);
       } else {
-        console.log("incorect");
+        setIsCorrect(false);
       }
     }
   }
@@ -49,6 +52,7 @@ const FindNumbersUpToTen = () => {
           handleCardClick={numberClicked}
         />
       </Container>
+      <FeedbackMessageComponent isCorrect={isCorrect} />
     </div>
   );
 };
