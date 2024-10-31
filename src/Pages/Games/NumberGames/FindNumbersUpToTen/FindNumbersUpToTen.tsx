@@ -52,7 +52,10 @@ const FindNumbersUpToTen = () => {
           handleCardClick={numberClicked}
         />
       </Container>
-      <FeedbackMessageComponent isCorrect={isCorrect} />
+      <FeedbackMessageComponent
+        isCorrect={isCorrect}
+        setIsCorrect={setIsCorrect}
+      />
     </div>
   );
 };

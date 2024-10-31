@@ -1,14 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import wrong from "../../Images/wrong.svg";
 import correct from "../../Images/correct.svg";
+import "./FeedbackMessageComponentStyles.scss";
 
 interface FeedbackMessageComponentProps {
   isCorrect: boolean | null;
+  setIsCorrect: (value: boolean | null) => void;
 }
 
 const FeedbackMessageComponent = ({
   isCorrect,
+  setIsCorrect,
 }: FeedbackMessageComponentProps) => {
+  useEffect(() => {
+    if (isCorrect !== null) {
+      const timer = setTimeout(() => {
+        setIsCorrect(null);
+      }, 500);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isCorrect, setIsCorrect]);
+
   return (
     <div className="feedback-message">
       {isCorrect === true && (
