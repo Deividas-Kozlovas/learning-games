@@ -6,9 +6,9 @@ export const chunkArray = <T,>(array: T[], chunkSize: number): T[][] => {
   return result;
 };
 
-export function shuffleArray(numbersToFindOnCards: number[]): number[] {
-  const shuffledArray = [...numbersToFindOnCards];
-  const arrayLength = numbersToFindOnCards.length;
+export function shuffleArray(arrayToShuffle: number[]): number[] {
+  const shuffledArray = [...arrayToShuffle];
+  const arrayLength = arrayToShuffle.length;
 
   for (let i = 0; i < arrayLength; i++) {
     const randomIndex = Math.floor(Math.random() * (arrayLength - 1)) + 1;
@@ -19,4 +19,11 @@ export function shuffleArray(numbersToFindOnCards: number[]): number[] {
   }
 
   return shuffledArray;
+}
+
+export function addUniqueValueToArray(array: number[], valueToAdd: number) {
+  if (!array.includes(valueToAdd)) {
+    array[array.length - 1] = valueToAdd; // Add the value to the last index for consistency
+  }
+  return array;
 }

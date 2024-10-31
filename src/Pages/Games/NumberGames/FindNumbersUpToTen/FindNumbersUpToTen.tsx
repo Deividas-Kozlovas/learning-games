@@ -10,7 +10,11 @@ import CardComponent from "../../../../Components/CardComponent/CardComponent.ts
 import FeedbackMessageComponent from "../../../../Components/FeedbackMessageComponent/FeedbackMessageComponent.tsx";
 
 // 4. Utils Functions
-import { chunkArray, shuffleArray } from "../../../../Utils/ArraysUtils.tsx";
+import {
+  chunkArray,
+  shuffleArray,
+  addUniqueValueToArray,
+} from "../../../../Utils/ArraysUtils.tsx";
 
 // 5. Data
 import {
@@ -29,15 +33,25 @@ const FindNumbersUpToTen = () => {
   const [numbersChunks, setNumbersChunks] = useState<number[][]>([]);
 
   useEffect(() => {
-    addValuesToCards();
-  }, []);
+    addValuesToCards(currentNumber);
+  }, [currentNumber]);
 
-  function addValuesToCards() {
-    const shuffledNubersOnCards = shuffleArray(numbersToShowOnCards);
+  function addValuesToCards(number: number) {
+    let shuffledNumbersOnCards = shuffleArray(numbersToShowOnCards);
 
-    setNumbersChunks(
-      chunkArray<number>(shuffledNubersOnCards.slice(0, 9), CARDS_PER_ROW)
-    );
+    shuffledNumbersOnCards = shuffledNumbersOnCards.slice(0, 9);
+
+    if (shuffledNumbersOnCards.includes(number + 1)) {
+      setNumbersChunks(
+        chunkArray<number>(shuffledNumbersOnCards, CARDS_PER_ROW)
+      );
+    } else {
+      const addedValue = addUniqueValueToArray(
+        shuffledNumbersOnCards,
+        number + 1
+      );
+      setNumbersChunks(chunkArray<number>(addedValue, CARDS_PER_ROW));
+    }
   }
 
   function numberClicked(card: number): void {
@@ -47,7 +61,6 @@ const FindNumbersUpToTen = () => {
       if (card === currentNumber + 1) {
         setCurrentNumber((prevNumber) => prevNumber + 1);
         setIsCorrect(true);
-        addValuesToCards();
       } else {
         setIsCorrect(false);
       }
