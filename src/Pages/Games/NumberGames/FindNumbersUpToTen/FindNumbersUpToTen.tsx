@@ -1,5 +1,5 @@
 // 1. React
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // 2. Third-Party Libraries
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
@@ -9,8 +9,8 @@ import ProgressBar from "react-bootstrap/ProgressBar";
 import CardComponent from "../../../../Components/CardComponent/CardComponent.tsx";
 import FeedbackMessageComponent from "../../../../Components/FeedbackMessageComponent/FeedbackMessageComponent.tsx";
 
-// 4. Helper Functions
-import { chunkArray } from "../../../../Helpers/ArrayHelper.tsx";
+// 4. Utils Functions
+import { chunkArray, shuffleArray } from "../../../../Utils/ArraysUtils.tsx";
 
 // 5. Data
 import {
@@ -26,11 +26,19 @@ const FindNumbersUpToTen = () => {
 
   const [currentNumber, setCurrentNumber] = useState<number>(0);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+  const [numbersChunks, setNumbersChunks] = useState<number[][]>([]);
 
-  const numbersChunks = chunkArray<number>(
-    numbersToShowOnCards.slice(0, 9),
-    CARDS_PER_ROW
-  );
+  useEffect(() => {
+    addValuesToCards();
+  }, []);
+
+  function addValuesToCards() {
+    const shuffledNubersOnCards = shuffleArray(numbersToShowOnCards);
+
+    setNumbersChunks(
+      chunkArray<number>(shuffledNubersOnCards.slice(0, 9), CARDS_PER_ROW)
+    );
+  }
 
   function numberClicked(card: number): void {
     if (currentNumber === 9) {
@@ -39,6 +47,7 @@ const FindNumbersUpToTen = () => {
       if (card === currentNumber + 1) {
         setCurrentNumber((prevNumber) => prevNumber + 1);
         setIsCorrect(true);
+        addValuesToCards();
       } else {
         setIsCorrect(false);
       }
