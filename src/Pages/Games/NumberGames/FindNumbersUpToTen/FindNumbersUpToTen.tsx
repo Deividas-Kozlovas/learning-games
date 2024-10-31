@@ -7,19 +7,13 @@ import {
   numbersToShowOnCards,
 } from "./FindNumversUpToTenData.tsx";
 import { Prev } from "react-bootstrap/esm/PageItem";
+import { chunkArray } from "../../../../Helpers/ArrayHelper.tsx";
+import CardComponent from "../../../../Components/CardComponent/CardComponent.tsx";
 
 const FindNumbersUpToTen = () => {
   const CARDS_PER_ROW = 3;
 
   const [currentNumber, setCurrentNumber] = useState<number>(0);
-
-  const chunkArray = <T,>(array: T[], chunkSize: number): T[][] => {
-    const result: T[][] = [];
-    for (let i = 0; i < array.length; i += chunkSize) {
-      result.push(array.slice(i, i + chunkSize));
-    }
-    return result;
-  };
 
   const numbersChunks = chunkArray<number>(
     numbersToShowOnCards.slice(0, 9),
@@ -51,21 +45,10 @@ const FindNumbersUpToTen = () => {
             </Card>
           </Col>
         </Row>
-        {numbersChunks.map((chunk, rowIndex) => (
-          <Row key={`row-${rowIndex}`}>
-            {chunk.map((card, cardIndex) => (
-              <Col key={`card-${rowIndex}-${cardIndex}`}>
-                <Card>
-                  <Card.Body>
-                    <Card.Text onClick={() => numberClicked(card)}>
-                      {card}
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
-          </Row>
-        ))}
+        <CardComponent
+          chunkedArray={numbersChunks}
+          handleCardClick={numberClicked}
+        />
       </Container>
     </div>
   );
