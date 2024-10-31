@@ -1,14 +1,25 @@
+// 1. React
 import React, { useState } from "react";
+
+// 2. Third-Party Libraries
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import ProgressBar from "react-bootstrap/ProgressBar";
-import "./FindNumbersUpToTenStyles.scss";
+
+// 3. Local Components
+import CardComponent from "../../../../Components/CardComponent/CardComponent.tsx";
+import FeedbackMessageComponent from "../../../../Components/FeedbackMessageComponent/FeedbackMessageComponent.tsx";
+
+// 4. Helper Functions
+import { chunkArray } from "../../../../Helpers/ArrayHelper.tsx";
+
+// 5. Data
 import {
   numbersToFindInWords,
   numbersToShowOnCards,
 } from "./FindNumversUpToTenData.tsx";
-import { chunkArray } from "../../../../Helpers/ArrayHelper.tsx";
-import CardComponent from "../../../../Components/CardComponent/CardComponent.tsx";
-import FeedbackMessageComponent from "../../../../Components/FeedbackMessageComponent/FeedbackMessageComponent.tsx";
+
+// 6. Styles
+import "./FindNumbersUpToTenStyles.scss";
 
 const FindNumbersUpToTen = () => {
   const CARDS_PER_ROW = 3;
