@@ -24,6 +24,7 @@ import {
 
 // 6. Styles
 import "./FindNumbersUpToTenStyles.scss";
+import GameOverComponent from "../../../../Components/GameOverComponent/GameOverComponent.tsx";
 
 const FindNumbersUpToTen = () => {
   const CARDS_PER_ROW = 3;
@@ -31,6 +32,7 @@ const FindNumbersUpToTen = () => {
   const [currentNumber, setCurrentNumber] = useState<number>(0);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [numbersChunks, setNumbersChunks] = useState<number[][]>([]);
+  const [isGameOver, setIsGameOver] = useState<boolean>(false);
 
   useEffect(() => {
     addValuesToCards(currentNumber);
@@ -89,6 +91,7 @@ const FindNumbersUpToTen = () => {
         isCorrect={isCorrect}
         setIsCorrect={setIsCorrect}
       />
+      <GameOverComponent setIsGameOver={setIsGameOver} />
     </div>
   );
 };
