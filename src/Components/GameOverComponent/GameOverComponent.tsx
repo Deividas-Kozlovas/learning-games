@@ -1,5 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
+import "./GameOverComponentStyles.scss";
+import wrong from "../../Images/wrong.svg";
 import { Link } from "react-router-dom";
 
 interface GameOverComponentProps {
@@ -20,7 +22,7 @@ const GameOverComponent = ({ setIsGameOver }: GameOverComponentProps) => {
               <button>
                 <img
                   className="game-over__close__image"
-                  src={""}
+                  src={wrong}
                   alt="close-game"
                 />
               </button>

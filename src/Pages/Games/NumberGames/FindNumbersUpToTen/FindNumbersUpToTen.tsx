@@ -59,6 +59,7 @@ const FindNumbersUpToTen = () => {
   function numberClicked(card: number): void {
     if (currentNumber === 9) {
       setCurrentNumber(0);
+      setIsGameOver(true);
     } else {
       if (card === currentNumber + 1) {
         setCurrentNumber((prevNumber) => prevNumber + 1);
@@ -91,7 +92,9 @@ const FindNumbersUpToTen = () => {
         isCorrect={isCorrect}
         setIsCorrect={setIsCorrect}
       />
-      <GameOverComponent setIsGameOver={setIsGameOver} />
+      {isGameOver === true && (
+        <GameOverComponent setIsGameOver={setIsGameOver} />
+      )}
     </div>
   );
 };
