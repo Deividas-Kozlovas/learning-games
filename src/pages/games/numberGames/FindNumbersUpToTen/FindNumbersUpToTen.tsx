@@ -6,27 +6,27 @@ import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import ProgressBar from "react-bootstrap/ProgressBar";
 
 // 3. Local Components
-import CardComponent from "../../../../Components/CardComponent/CardComponent.tsx";
-import FeedbackMessageComponent from "../../../../Components/FeedbackMessageComponent/FeedbackMessageComponent.tsx";
+import CardComponent from "../../../../components/CardComponent/CardComponent.tsx";
+import FeedbackMessageComponent from "../../../../components/FeedbackMessageComponent/FeedbackMessageComponent.tsx";
+import GameOverComponent from "../../../../components/GameOverComponent/GameOverComponent.tsx";
 
 // 4. Utils Functions
 import {
   chunkArray,
   shuffleArray,
   addUniqueValueToArray,
-} from "../../../../Utils/ArraysUtils.tsx";
+} from "../../../../moduls/utils/arraysUtils.tsx";
 
 // 5. Data
 import {
   numbersToFindInWords,
   numbersToShowOnCards,
-} from "./FindNumversUpToTenData.tsx";
+} from "./findNumversUpToTenData.tsx";
 
 // 6. Styles
-import "./FindNumbersUpToTenStyles.scss";
-import GameOverComponent from "../../../../Components/GameOverComponent/GameOverComponent.tsx";
+import "./findNumbersUpToTenStyles.scss";
 
-const FindNumbersUpToTen = () => {
+const findNumbersUpToTen = () => {
   const CARDS_PER_ROW = 3;
 
   const [currentNumber, setCurrentNumber] = useState<number>(0);
@@ -99,4 +99,4 @@ const FindNumbersUpToTen = () => {
   );
 };
 
-export default FindNumbersUpToTen;
+export default findNumbersUpToTen;
