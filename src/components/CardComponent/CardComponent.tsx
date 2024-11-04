@@ -4,11 +4,13 @@ import { Row, Col, Card } from "react-bootstrap";
 interface CardComponentsProps {
   chunkedArray: number[][];
   handleCardClick: (card: number) => void;
+  backgroundColors: string[];
 }
 
 const CardComponent = ({
   chunkedArray,
   handleCardClick,
+  backgroundColors,
 }: CardComponentsProps) => {
   return (
     <>
@@ -16,7 +18,14 @@ const CardComponent = ({
         <Row key={`row-${rowIndex}`}>
           {chunk.map((card, cardIndex) => (
             <Col key={`card-${rowIndex}-${cardIndex}`}>
-              <Card>
+              <Card
+                style={{
+                  backgroundColor:
+                    backgroundColors[
+                      Math.floor(Math.random() * backgroundColors.length)
+                    ],
+                }}
+              >
                 <Card.Body>
                   <Card.Text onClick={() => handleCardClick(card)}>
                     {card}

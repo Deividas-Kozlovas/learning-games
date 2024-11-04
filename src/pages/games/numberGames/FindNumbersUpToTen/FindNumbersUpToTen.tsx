@@ -16,6 +16,7 @@ import {
   shuffleArray,
   addUniqueValueToArray,
 } from "../../../../moduls/utils/arraysUtils.tsx";
+import { getRandomLightColor } from "../../../../moduls/utils/randomColorGeneratorUtils.tsx";
 
 // 5. Data
 import {
@@ -26,16 +27,18 @@ import {
 // 6. Styles
 import "./FindNumbersUpToTenStyles.scss";
 
-const findNumbersUpToTen = () => {
+const FindNumbersUpToTen = () => {
   const CARDS_PER_ROW = 3;
 
   const [currentNumber, setCurrentNumber] = useState<number>(0);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [numbersChunks, setNumbersChunks] = useState<number[][]>([]);
   const [isGameOver, setIsGameOver] = useState<boolean>(false);
+  const [backgroundColors, setBackgroundColors] = useState<string[]>([]);
 
   useEffect(() => {
     addValuesToCards(currentNumber);
+    setBackgroundColors(Array.from({ length: 9 }, () => getRandomLightColor()));
   }, [currentNumber]);
 
   function addValuesToCards(number: number) {
@@ -86,6 +89,7 @@ const findNumbersUpToTen = () => {
         <CardComponent
           chunkedArray={numbersChunks}
           handleCardClick={numberClicked}
+          backgroundColors={backgroundColors}
         />
       </Container>
       <FeedbackMessageComponent
@@ -99,4 +103,4 @@ const findNumbersUpToTen = () => {
   );
 };
 
-export default findNumbersUpToTen;
+export default FindNumbersUpToTen;
