@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import wrong from "../../Images/wrong.svg";
-import correct from "../../Images/correct.svg";
+import wrong from "../../images/wrong.svg";
+import correct from "../../images/correct.svg";
 import "./FeedbackMessageComponentStyles.scss";
 
 interface FeedbackMessageComponentProps {

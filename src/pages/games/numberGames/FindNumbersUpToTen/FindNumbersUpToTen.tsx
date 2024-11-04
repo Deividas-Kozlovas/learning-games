@@ -21,10 +21,10 @@ import {
 import {
   numbersToFindInWords,
   numbersToShowOnCards,
-} from "./findNumversUpToTenData.tsx";
+} from "./FindNumversUpToTenData.tsx";
 
 // 6. Styles
-import "./findNumbersUpToTenStyles.scss";
+import "./FindNumbersUpToTenStyles.scss";
 
 const findNumbersUpToTen = () => {
   const CARDS_PER_ROW = 3;

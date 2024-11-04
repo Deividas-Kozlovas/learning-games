@@ -1,7 +1,6 @@
 import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import "./GameOverComponentStyles.scss";
-import wrong from "../../Images/wrong.svg";
 import { Link } from "react-router-dom";
 
 interface GameOverComponentProps {
@@ -17,27 +16,23 @@ const GameOverComponent = ({ setIsGameOver }: GameOverComponentProps) => {
     <div className="game-over">
       <Container className="game-over__container">
         <Row className="game-over__row">
-          <Col className="game-over__close">
-            <Link to="/">
-              <button>
-                <img
-                  className="game-over__close__image"
-                  src={wrong}
-                  alt="close-game"
-                />
-              </button>
-            </Link>
-          </Col>
-        </Row>
-        <Row className="game-over__row">
           <Col>
             <h1>Žaidimas baigtas</h1>
           </Col>
         </Row>
         <Row className="game-over__row">
           <Col>
-            <Button onClick={() => handlePlayAgain()} variant="success">
-              Zaisti dar karta
+            <Link to="/">
+              <Button className="m-4" variant="danger">
+                Grįžti į pradžią
+              </Button>
+            </Link>
+            <Button
+              className="m-4"
+              onClick={() => handlePlayAgain()}
+              variant="success"
+            >
+              Žaisti dar kartą
             </Button>
           </Col>
         </Row>
