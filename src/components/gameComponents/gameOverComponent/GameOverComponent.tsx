@@ -2,22 +2,10 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import "./GameOverComponentStyles.scss";
 import closeGame from "../../../assets/images/wrong.svg";
 import { Link } from "react-router-dom";
+import { useCardGameContext } from "../../../context/CardGameContext";
 
-interface GameOverComponentProps {
-  setGameOver: React.Dispatch<React.SetStateAction<boolean>>;
-  elapsedTime: string;
-  startTimer: () => void;
-}
-
-const GameOverComponent = ({
-  setGameOver,
-  elapsedTime,
-  startTimer,
-}: GameOverComponentProps) => {
-  const handlePlayAgain = (): void => {
-    setGameOver(false);
-    startTimer();
-  };
+const GameOverComponent = () => {
+  const { state, startGame } = useCardGameContext();
 
   return (
     <div className="game-over">
@@ -47,7 +35,7 @@ const GameOverComponent = ({
           </Col>
           <Col>
             <p>Laikas</p>
-            <p>{elapsedTime}</p>
+            <p>{state.elapsedTime}</p>
           </Col>
           <Col>
             <p>Taskai</p>
@@ -56,7 +44,7 @@ const GameOverComponent = ({
         </Row>
         <Row className="game-over__row">
           <Col>
-            <Button onClick={() => handlePlayAgain()} variant="success">
+            <Button onClick={() => startGame()} variant="success">
               Zaisti dar karta
             </Button>
           </Col>

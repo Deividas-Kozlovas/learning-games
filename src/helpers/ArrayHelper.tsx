@@ -29,13 +29,17 @@ export function addCurrentAnswerToArray(
   valuesInArray: Array<string | number>,
   valueToFindInArray: number | string
 ): Array<string | number> {
+  console.log(valueToFindInArray);
+
   if (valuesInArray.includes(valueToFindInArray)) {
     return valuesInArray;
   }
 
   const randomIndex = Math.floor(Math.random() * valuesInArray.length);
 
-  valuesInArray[randomIndex] = valueToFindInArray;
+  // Create a new array instead of mutating the original
+  const newArray = [...valuesInArray];
+  newArray[randomIndex] = valueToFindInArray;
 
-  return valuesInArray;
+  return newArray;
 }
