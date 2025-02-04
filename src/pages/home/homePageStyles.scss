@@ -2,6 +2,9 @@
   width: 100%;
   height: 100%;
   background-image: url("../../assets/images/confetti-doodles.svg");
+  background-repeat: repeat-y;
+  background-size: contain;
+  background-position: center;
 
   &__container {
     padding-top: 200px;
@@ -53,12 +56,24 @@
       }
 
       &--numbers-games {
-        background-image: url("../../assets/images/buttons/number-button.jpeg");
+        background-image: url("../../assets/images/buttons/numbers-button.jpeg");
       }
 
       &--letters-games {
         background-image: url("../../assets/images/buttons/letters-button.jpeg");
       }
+
+      &--colors-games {
+        background-image: url("../../assets/images/buttons/colors-button.jpeg");
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .select-game {
+    &__container {
+      padding-top: 50px;
     }
   }
 }

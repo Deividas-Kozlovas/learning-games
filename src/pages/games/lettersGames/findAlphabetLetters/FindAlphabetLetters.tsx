@@ -6,7 +6,7 @@ import FeedbackMessageComponent from "../../../../components/gameComponents/feed
 import ProgressComponent from "../../../../components/gameComponents/progressComponent/ProgressComponent";
 import GameOverComponent from "../../../../components/gameComponents/gameOverComponent/GameOverComponent";
 
-import { alphabet } from "./FindAlphabetLettersData";
+import { alphabet } from "./findAlphabetLettersData";
 
 import {
   addCurrentAnswerToArray,
@@ -15,7 +15,7 @@ import {
 } from "../../../../helpers/ArrayHelper";
 import { getRandomLightColor } from "../../../../helpers/RandomColorGeneratorHelper";
 import { startTimer, endTimer } from "../../../../helpers/CountTimeHelper";
-import "./FindAlphabetLettersStyles.scss";
+import "./findAlphabetLettersStyles.scss";
 
 function FindAlphabetLetters() {
   const [currentLetterIndexToFind, setCurrentLetterIndexToFind] =

@@ -8,7 +8,7 @@ import GameOverComponent from "../../../../components/gameComponents/gameOverCom
 import {
   numbersToFindInWords,
   numbersToShowOnCards,
-} from "./FindNumberByWordData";
+} from "./findNumberByWordData";
 
 import {
   addCurrentAnswerToArray,
@@ -17,7 +17,7 @@ import {
 } from "../../../../helpers/ArrayHelper";
 import { getRandomLightColor } from "../../../../helpers/RandomColorGeneratorHelper";
 import { startTimer, endTimer } from "../../../../helpers/CountTimeHelper";
-import "./FindNumberByWordStyles.scss";
+import "./findNumberByWordStyles.scss";
 
 function FindNumberByWord() {
   const [currentNumberToFind, setCurrentNumberToFind] = useState<number>(0);

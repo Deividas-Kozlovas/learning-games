@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Container, Row, Col, Button } from "react-bootstrap";
-import "./HomePageStyles.scss";
+import "./homePageStyles.scss";
 
 function HomePage() {
   return (
@@ -31,7 +31,10 @@ function HomePage() {
         <Row>
           <Col className="select-game__selector">
             <Link to="/find-number-by-word">
-              <Button className="select-game__text" variant="primary">
+              <Button
+                className="select-game__text select-game__text--colors-games"
+                variant="primary"
+              >
                 Žaidimai su spalvom
               </Button>
             </Link>
