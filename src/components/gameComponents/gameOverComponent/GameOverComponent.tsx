@@ -7,6 +7,10 @@ import { useCardGameContext } from "../../../context/CardGameContext";
 const GameOverComponent = () => {
   const { state, startGame } = useCardGameContext();
 
+  const handleRestart = () => {
+    startGame(state.initialItems);
+  };
+
   return (
     <div className="game-over">
       <Container className="game-over__container">
@@ -31,20 +35,16 @@ const GameOverComponent = () => {
         <Row className="game-over__row">
           <Col>
             <p>Klaidingi paspaudimai</p>
-            <p>10</p>
+            <p>{state.incorectPress}</p>
           </Col>
           <Col>
             <p>Laikas</p>
             <p>{state.elapsedTime}</p>
           </Col>
-          <Col>
-            <p>Taskai</p>
-            <p>89</p>
-          </Col>
         </Row>
         <Row className="game-over__row">
           <Col>
-            <Button onClick={() => startGame()} variant="success">
+            <Button onClick={handleRestart} variant="success">
               Zaisti dar karta
             </Button>
           </Col>

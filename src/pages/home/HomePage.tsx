@@ -41,7 +41,10 @@ function HomePage() {
           </Col>
           <Col className="select-game__selector">
             <Link to="/find-number-by-word">
-              <Button className="select-game__text" variant="primary">
+              <Button
+                className="select-game__text select-game__text--word-games"
+                variant="primary"
+              >
                 Žaidimai su žodžiais
               </Button>
             </Link>

@@ -1,6 +1,8 @@
 export const SET_LOADING = "SET_LOADING";
 export const SET_ERROR = "SET_ERROR";
-export const SET_CURRENT_ITEM_TO_FIND = "SET_CURRENT_ITEM_TO_FIND";
+export const SET_INCORECT_PRESS = "SET_INCORECT_PRESS";
+export const SET_INITIAL_ITEMS = "SET_INITIAL_ITEMS";
+export const SET_CURRENT_ITEMS_INDEX_TO_FIND = "SET_CURRENT_ITEMS_INDEX_TO_FIND";
 export const SET_SHUFFLED_ITEMS = "SET_SHUFFLED_ITEMS";
 export const SET_CHUNKED_ITMES = "SET_CHUNKED_ITMES";
 export const SET_CARDS_BACKGROUND_COLORS = "SET_CARDS_BACKGROUND_COLORS";
@@ -10,8 +12,10 @@ export const SET_ELAPSED_TIME = "SET_ELAPSED_TIME";
 
 export interface CardGameState {
   currentItemIndex: number;
-  shuffledItems: any[];
-  chunkedItems: any[];
+  incorectPress: number;
+  initialItems: (string | number)[];
+  shuffledItems: (string | number)[];
+  chunkedItems: (string[] | number[])[];
   itemsBackgroundColors: string[];
   isAnswerCorrect: boolean | null;
   gameOver: boolean;

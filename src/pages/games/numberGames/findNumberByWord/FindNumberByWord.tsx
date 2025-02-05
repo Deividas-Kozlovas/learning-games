@@ -1,5 +1,3 @@
-// Updated FindItemByWord.tsx
-
 import { useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useCardGameContext } from "../../../../context/CardGameContext"; // Use the custom hook to access the context
@@ -9,12 +7,13 @@ import ProgressComponent from "../../../../components/gameComponents/progressCom
 import GameOverComponent from "../../../../components/gameComponents/gameOverComponent/GameOverComponent";
 import { numbersToFindInWords } from "./findNumberByWordData";
 import "./findNumberByWordStyles.scss";
+import { numbersToShowOnCards } from "../../../../pages/games/numberGames/findNumberByWord/findNumberByWordData";
 
 function FindItemByWord() {
   const { state, startGame, handleCardClick } = useCardGameContext();
 
   useEffect(() => {
-    startGame();
+    startGame(numbersToShowOnCards);
   }, []);
 
   return (
