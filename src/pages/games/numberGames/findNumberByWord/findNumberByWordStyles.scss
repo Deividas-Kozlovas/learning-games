@@ -1,6 +1,36 @@
 .find-numbers-game-background {
+  position: relative;
   height: 100vh;
-  background: linear-gradient(rgba(0, 0, 0, 0.4), hsla(0, 0%, 0%, 1)),
-    url(../../../../assets/images/background/findNumberByWordBackground.jpg)
-      center center / cover no-repeat;
+  width: 100%;
+  background: url("../../../../assets/images/background/findNumberByWordBackground.jpg")
+    center center / cover no-repeat;
+
+  /* Apply a gradient overlay on top of the background image */
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), hsla(0, 0%, 0%, 1));
+    z-index: 1; /* Ensure gradient stays below content but above the background */
+  }
+
+  /* The image should cover the container */
+  .find-numbers-game-background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the container */
+    z-index: 0; /* The image is the lowest layer */
+  }
+
+  /* Content should be above the image and gradient */
+  .find-numbers-game-content {
+    position: relative;
+    z-index: 2; /* Ensure content is above the gradient and background */
+  }
 }
