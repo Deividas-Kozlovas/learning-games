@@ -1,4 +1,6 @@
 import {
+  SET_SOUND,
+  SET_TALKING_SOUND,
   SET_CURRENT_ITEMS_INDEX_TO_FIND,
   SET_INCORECT_PRESS,
   SET_INITIAL_ITEMS,
@@ -13,6 +15,8 @@ import {
 } from "../actions/cardGameActions";
 
 const initialState: CardGameState = {
+  talkingSoundON: true,
+  soundON: true,
   currentItemIndex: 0,
   incorectPress: 0,
   initialItems: [],
@@ -26,6 +30,10 @@ const initialState: CardGameState = {
 
 const cardGameReducer = (state: CardGameState = initialState, action: CardGameAction): CardGameState => {
   switch (action.type) {
+    case SET_SOUND:
+      return {...state, soundON: action.payload};
+    case SET_TALKING_SOUND:
+      return {...state, talkingSoundON: action.payload};
     case SET_INCORECT_PRESS:
       return {...state, incorectPress: action.payload};
     case SET_CURRENT_ITEMS_INDEX_TO_FIND:

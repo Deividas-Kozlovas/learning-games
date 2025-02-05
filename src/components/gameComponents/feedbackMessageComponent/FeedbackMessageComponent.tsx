@@ -1,5 +1,5 @@
-import wrong from "../../../assets/images/wrong.svg";
-import correct from "../../../assets/images/correct.svg";
+import wrong from "../../../assets/images/icons/wrong.svg";
+import correct from "../../../assets/images/icons/correct.svg";
 import "./FeedbackMessageComponentStyles.scss";
 
 interface FeedbackMessageComponentProps {

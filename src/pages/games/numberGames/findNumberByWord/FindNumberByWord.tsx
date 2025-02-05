@@ -9,9 +9,12 @@ import { numbersToFindInWords } from "./findNumberByWordData";
 import "./findNumberByWordStyles.scss";
 import { numbersToShowOnCards } from "../../../../pages/games/numberGames/findNumberByWord/findNumberByWordData";
 import backgroundImage from "../../../../assets/images/background/findNumberByWordBackground.jpg";
+import sound from "../../../../assets/images/icons/sound.svg";
+import talkingSound from "../../../../assets/images/icons/talking-sound.svg";
 
 function FindItemByWord() {
-  const { state, startGame, handleCardClick } = useCardGameContext();
+  const { state, startGame, handleCardClick, toggleSound } =
+    useCardGameContext();
 
   useEffect(() => {
     startGame(numbersToShowOnCards);
@@ -35,6 +38,19 @@ function FindItemByWord() {
               <p className="card__text">
                 {numbersToFindInWords[state.currentItemIndex]}
               </p>
+              <img
+                onClick={() => toggleSound("sound")}
+                className={`card__icon card__icon--sound ${
+                  !state.soundON ? "card__icon--sound-disabled" : ""
+                }`}
+                src={sound}
+                alt="Įjungti arba išjungti garsą"
+              />
+              <img
+                className="card__icon card__icon--talking-sound"
+                src={talkingSound}
+                alt="Įjungti arba išjungti balso garsą"
+              />
             </Col>
           </Row>
           <CardComponents

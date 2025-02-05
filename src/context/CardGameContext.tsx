@@ -19,6 +19,8 @@ import {
 import { getRandomLightColor } from "../helpers/RandomColorGeneratorHelper";
 import { startTimer, endTimer } from "../helpers/CountTimeHelper";
 import {
+  SET_SOUND,
+  SET_TALKING_SOUND,
   SET_SHUFFLED_ITEMS,
   SET_CARDS_BACKGROUND_COLORS,
   SET_CHUNKED_ITMES,
@@ -28,8 +30,11 @@ import {
   SET_GAME_OVER,
   SET_ELAPSED_TIME,
 } from "../actions/cardGameActions";
+import correctSound from "../assets/sounds/correct-sound.wav";
 
 const initialState: CardGameState = {
+  soundON: true,
+  talkingSoundON: true,
   currentItemIndex: 0,
   incorectPress: 0,
   initialItems: [],
@@ -47,12 +52,21 @@ const CardGameContext = createContext<
       dispatch: React.Dispatch<CardGameAction>;
       startGame: (currentItems: (string | number)[]) => void;
       handleCardClick: (card: string | number) => void;
+      toggleSound: (sountType: string) => void;
     }
   | undefined
 >(undefined);
 
 export const CardGameProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(cardGameReducer, initialState);
+
+  const toggleSound = (soundType: string) => {
+    if (soundType === "sound") {
+      dispatch({ type: SET_SOUND, payload: !state.soundON });
+    } else if (soundType === "talking-sound") {
+      dispatch({ type: SET_TALKING_SOUND, payload: !state.talkingSoundON });
+    }
+  };
 
   const startGame = (newItems: (string | number)[]) => {
     if (!Array.isArray(newItems) || newItems.length === 0) {
@@ -80,6 +94,11 @@ export const CardGameProvider = ({ children }: { children: ReactNode }) => {
 
   const handleCardClick = (card: string | number) => {
     if (state.currentItemIndex + 1 === card) {
+      if (state.soundON) {
+        const audio = new Audio(correctSound);
+        audio.play();
+      }
+
       dispatch({ type: SET_IS_ANSWER_CORRECT, payload: true });
 
       const nextIndex = state.currentItemIndex + 1;
@@ -130,7 +149,7 @@ export const CardGameProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <CardGameContext.Provider
-      value={{ state, dispatch, startGame, handleCardClick }}
+      value={{ state, dispatch, startGame, handleCardClick, toggleSound }}
     >
       {children}
     </CardGameContext.Provider>

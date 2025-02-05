@@ -5,7 +5,7 @@ import numbersButton from "../../assets/images/buttons/numbers-button.jpeg";
 import lettersButton from "../../assets/images/buttons/letters-button.jpeg";
 import colorsButton from "../../assets/images/buttons/colors-button.jpeg";
 import wordsButton from "../../assets/images/buttons/words-button.jpeg";
-import confettiImage from "../../assets/images/confetti-doodles.svg";
+import confettiImage from "../../assets/images/background/confetti-doodles.svg";
 
 function HomePage() {
   return (

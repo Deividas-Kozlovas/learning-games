@@ -1,6 +1,6 @@
 import { Container, Row, Col, Button } from "react-bootstrap";
 import "./GameOverComponentStyles.scss";
-import closeGame from "../../../assets/images/wrong.svg";
+import closeGame from "../../../assets/images/icons/wrong.svg";
 import { Link } from "react-router-dom";
 import { useCardGameContext } from "../../../context/CardGameContext";
 

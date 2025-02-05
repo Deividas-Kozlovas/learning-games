@@ -1,5 +1,5 @@
-export const SET_LOADING = "SET_LOADING";
-export const SET_ERROR = "SET_ERROR";
+export const SET_SOUND = "SET_SOUND";
+export const SET_TALKING_SOUND = "SET_TALKING_SOUND"
 export const SET_INCORECT_PRESS = "SET_INCORECT_PRESS";
 export const SET_INITIAL_ITEMS = "SET_INITIAL_ITEMS";
 export const SET_CURRENT_ITEMS_INDEX_TO_FIND = "SET_CURRENT_ITEMS_INDEX_TO_FIND";
@@ -11,6 +11,8 @@ export const SET_GAME_OVER = "SET_GAME_OVER";
 export const SET_ELAPSED_TIME = "SET_ELAPSED_TIME";
 
 export interface CardGameState {
+  soundON: boolean;
+  talkingSoundON: boolean;
   currentItemIndex: number;
   incorectPress: number;
   initialItems: (string | number)[];
