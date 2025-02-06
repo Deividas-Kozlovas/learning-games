@@ -94,7 +94,8 @@ export const CardGameProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const handleCardClick = (card: string | number) => {
-    if (state.currentItemIndex + 1 === card) {
+    console.log(`pressed: ${state.initialItems[state.currentItemIndex]}`);
+    if (state.initialItems[state.currentItemIndex] === card) {
       if (state.soundON) {
         const audio = new Audio(correctSound);
         audio.play();
@@ -103,10 +104,9 @@ export const CardGameProvider = ({ children }: { children: ReactNode }) => {
       dispatch({ type: SET_IS_ANSWER_CORRECT, payload: true });
 
       const nextIndex = state.currentItemIndex + 1;
-
       const newShuffledArray = addCurrentAnswerToArray(
         shuffleArray(state.initialItems).slice(0, 9),
-        state.initialItems[(state.currentItemIndex + 1) % 10]
+        state.initialItems[nextIndex]
       );
 
       dispatch({ type: SET_SHUFFLED_ITEMS, payload: newShuffledArray });
@@ -116,7 +116,7 @@ export const CardGameProvider = ({ children }: { children: ReactNode }) => {
           type: SET_CURRENT_ITEMS_INDEX_TO_FIND,
           payload: nextIndex,
         });
-        if (nextIndex === 10) {
+        if (nextIndex === state.initialItems.length) {
           dispatch({ type: SET_GAME_OVER, payload: true });
           dispatch({ type: SET_ELAPSED_TIME, payload: endTimer() });
           dispatch({ type: SET_CURRENT_ITEMS_INDEX_TO_FIND, payload: 0 });

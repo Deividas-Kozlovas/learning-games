@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
 import CardComponents from "../../../../components/gameComponents/cardComponent/CardComponent";
@@ -7,78 +7,23 @@ import ProgressComponent from "../../../../components/gameComponents/progressCom
 import GameOverComponent from "../../../../components/gameComponents/gameOverComponent/GameOverComponent";
 
 import { alphabet } from "./findAlphabetLettersData";
-
-import {
-  addCurrentAnswerToArray,
-  chunkArrayToSmallerParts,
-  shuffleArray,
-} from "../../../../helpers/ArrayHelper";
-import { getRandomLightColor } from "../../../../helpers/RandomColorGeneratorHelper";
-import { startTimer, endTimer } from "../../../../helpers/CountTimeHelper";
 import "./findAlphabetLettersStyles.scss";
+import { useCardGameContext } from "../../../../context/CardGameContext";
+import sound from "../../../../assets/images/icons/sound.svg";
+import talkingSound from "../../../../assets/images/icons/talking-sound.svg";
 
 function FindAlphabetLetters() {
-  const [currentLetterIndexToFind, setCurrentLetterIndexToFind] =
-    useState<number>(0);
-  const [shuffledLettersToShowOnCards, setShuffledLettersToShowOnCards] =
-    useState<Array<string | number>>([]);
-  const [chunkedLettersToShowOnCards, setChunkedLettersToShowOnCards] =
-    useState<number[][]>([]);
-  const [cardsBackgroundColors, setCardsBackgroundColors] = useState<string[]>(
-    []
-  );
-  const [isAnswerCorrect, setIsAnswerCorrect] = useState<boolean | null>(null);
-  const [gameOver, setGameOver] = useState<boolean>(false);
-  const [elapsedTime, setElapsedTime] = useState<string>("");
+  const { state, startGame, handleCardClick, toggleSound } =
+    useCardGameContext();
 
   useEffect(() => {
-    startTimer();
+    startGame(alphabet);
   }, []);
-
-  useEffect(() => {
-    setShuffledLettersToShowOnCards(() => {
-      const shuffledLetters = shuffleArray(alphabet).slice(0, 9);
-      return addCurrentAnswerToArray(
-        shuffledLetters,
-        alphabet[currentLetterIndexToFind]
-      );
-    });
-
-    setCardsBackgroundColors(
-      Array.from({ length: 9 }, () => getRandomLightColor())
-    );
-  }, [currentLetterIndexToFind]);
-
-  useEffect(() => {
-    setChunkedLettersToShowOnCards(() =>
-      chunkArrayToSmallerParts(shuffledLettersToShowOnCards, 3)
-    );
-  }, [shuffledLettersToShowOnCards]);
-
-  const handleCardClick = (card: string | number): void => {
-    if (alphabet[currentLetterIndexToFind] === card) {
-      setIsAnswerCorrect(true);
-      setTimeout(() => {
-        setCurrentLetterIndexToFind((prevNumber) => prevNumber + 1);
-        if (currentLetterIndexToFind === alphabet.length - 1) {
-          setGameOver(true);
-          setElapsedTime(endTimer());
-          setCurrentLetterIndexToFind(0);
-        }
-        setIsAnswerCorrect(null);
-      }, 500);
-    } else {
-      setIsAnswerCorrect(false);
-      setTimeout(() => {
-        setIsAnswerCorrect(null);
-      }, 500);
-    }
-  };
 
   return (
     <div className="find-alphabet-letters-game-background">
       <ProgressComponent
-        progress={(currentLetterIndexToFind / alphabet.length) * 100}
+        progress={(state.currentItemIndex / alphabet.length) * 100}
       />
       <Container>
         <Row>
@@ -86,23 +31,30 @@ function FindAlphabetLetters() {
             className="card"
             style={{ backgroundColor: "rgb(151, 212, 159)" }}
           >
-            <p className="card__text">{alphabet[currentLetterIndexToFind]}</p>
+            <p className="card__text">{alphabet[state.currentItemIndex]}</p>
+            <img
+              onClick={() => toggleSound("sound")}
+              className={`card__icon card__icon--sound ${
+                !state.soundON ? "card__icon--sound-disabled" : ""
+              }`}
+              src={sound}
+              alt="Įjungti arba išjungti garsą"
+            />
+            <img
+              className="card__icon card__icon--talking-sound"
+              src={talkingSound}
+              alt="Įjungti arba išjungti balso garsą"
+            />
           </Col>
         </Row>
         <CardComponents
-          chunkedArray={chunkedLettersToShowOnCards}
-          cardsBackgroundColors={cardsBackgroundColors}
+          chunkedArray={state.chunkedItems}
+          cardsBackgroundColors={state.itemsBackgroundColors}
           handleCardClick={handleCardClick}
         />
       </Container>
-      <FeedbackMessageComponent isCorrect={isAnswerCorrect} />
-      {gameOver === true && (
-        <GameOverComponent
-          setGameOver={setGameOver}
-          elapsedTime={elapsedTime}
-          startTimer={startTimer}
-        />
-      )}
+      <FeedbackMessageComponent isCorrect={state.isAnswerCorrect} />
+      {state.gameOver === true && <GameOverComponent />}
     </div>
   );
 }
