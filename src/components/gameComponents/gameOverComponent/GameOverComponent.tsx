@@ -34,18 +34,18 @@ const GameOverComponent = () => {
         </Row>
         <Row className="game-over__row">
           <Col>
-            <p>Klaidingi paspaudimai</p>
+            <p>Klaidingi paspaudimai:</p>
             <p>{state.incorectPress}</p>
           </Col>
           <Col>
-            <p>Laikas</p>
+            <p>Laikas:</p>
             <p>{state.elapsedTime}</p>
           </Col>
         </Row>
         <Row className="game-over__row">
           <Col>
             <Button onClick={handleRestart} variant="success">
-              Zaisti dar karta
+              Žaisti dar kartą{" "}
             </Button>
           </Col>
         </Row>

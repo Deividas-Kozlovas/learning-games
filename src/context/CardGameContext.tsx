@@ -31,6 +31,7 @@ import {
   SET_ELAPSED_TIME,
 } from "../actions/cardGameActions";
 import correctSound from "../assets/sounds/correct-sound.wav";
+import wrongSound from "../assets/sounds/wrong-sound.wav";
 
 const initialState: CardGameState = {
   soundON: true,
@@ -130,6 +131,10 @@ export const CardGameProvider = ({ children }: { children: ReactNode }) => {
         dispatch({ type: SET_IS_ANSWER_CORRECT, payload: null });
       }, 500);
     } else {
+      if (state.soundON) {
+        const audio = new Audio(wrongSound);
+        audio.play();
+      }
       dispatch({ type: SET_IS_ANSWER_CORRECT, payload: false });
       dispatch({ type: SET_INCORECT_PRESS, payload: state.incorectPress + 1 });
       setTimeout(() => {
