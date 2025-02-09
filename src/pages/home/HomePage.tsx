@@ -6,10 +6,21 @@ import lettersButton from "../../assets/images/buttons/letters-button.jpeg";
 import colorsButton from "../../assets/images/buttons/colors-button.jpeg";
 import wordsButton from "../../assets/images/buttons/words-button.jpeg";
 import confettiImage from "../../assets/images/background/confetti-doodles.svg";
+import back from "../../assets/output.webm"
 
 function HomePage() {
   return (
     <div className="select-game">
+       {/* <video 
+        autoPlay 
+        loop 
+        muted 
+        playsInline 
+        className="select-game__video"
+      >
+        <source src={back} type="video/webm" />
+        Your browser does not support the video tag.
+      </video> */}
       <Container className="select-game__container">
         <Row>
           <Col className="select-game__selector">
@@ -45,7 +56,7 @@ function HomePage() {
         </Row>
         <Row>
           <Col className="select-game__selector">
-            <Link to="/find-number-by-word">
+            <Link to="/reasti-spalvas">
               <Button
                 className="select-game__text select-game__text--colors-games"
                 variant="primary"

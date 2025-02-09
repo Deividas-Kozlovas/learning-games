@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/home/HomePage";
 import FindNumberByWord from "./pages/games/numberGames/findNumberByWord/FindNumberByWord";
 import FindAlphabetLetters from "./pages/games/lettersGames/findAlphabetLetters/FindAlphabetLetters";
+import FindColorByWord from "./pages/games/colorGames/findColorByWord/FindColorByWord";
 import { CardGameProvider } from "./context/CardGameContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -16,6 +17,7 @@ function App() {
             path="/find-alphabet-letters"
             element={<FindAlphabetLetters />}
           />
+          <Route path="/reasti-spalvas" element={<FindColorByWord />} />
         </Routes>
       </Router>
     </CardGameProvider>
