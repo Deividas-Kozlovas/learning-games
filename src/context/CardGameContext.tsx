@@ -94,7 +94,6 @@ export const CardGameProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const handleCardClick = (card: string | number) => {
-    console.log(`pressed: ${state.initialItems[state.currentItemIndex]}`);
     if (state.initialItems[state.currentItemIndex] === card) {
       if (state.soundON) {
         const audio = new Audio(correctSound);

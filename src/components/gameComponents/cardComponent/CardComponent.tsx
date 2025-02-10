@@ -15,22 +15,24 @@ const CardComponents = ({
   return (
     <>
       {chunkedArray.map((row, rowIndex) => (
-        <Row key={`row-${rowIndex}`}>
-          {row.map((card, cardIndex) => (
-            <Col
-              style={{
-                backgroundColor:
-                  cardsBackgroundColors[Math.floor(Math.random() * 9)],
-              }}
-              className="card"
-              key={`col-${rowIndex}-${cardIndex}`}
-              onClick={() => handleCardClick(card)} // Pass the card (string or number)
-            >
-              <p className="card__text">{card}</p>
-            </Col>
-          ))}
-        </Row>
-      ))}
+  <Row key={`row-${rowIndex}`}>
+    {row.map((card, cardIndex) => {
+      const colorIndex = (rowIndex * row.length + cardIndex) % 9; // Cycle from 0 to 8
+      return (
+        <Col
+          style={{
+            backgroundColor: cardsBackgroundColors[colorIndex], // Always within bounds
+          }}
+          className="card"
+          key={`col-${rowIndex}-${cardIndex}`}
+          onClick={() => handleCardClick(card)}
+        >
+          <p className="card__text">{card}</p>
+        </Col>
+      );
+    })}
+  </Row>
+))}
     </>
   );
 };
