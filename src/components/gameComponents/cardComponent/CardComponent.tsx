@@ -1,5 +1,6 @@
 import { Row, Col } from "react-bootstrap";
 import "./CardComponentStyle.scss";
+import { useCardGameContext } from "../../../context/CardGameContext";
 
 interface CardComponentsProps {
   chunkedArray: (string[] | number[])[]; // Correctly typed chunked array
@@ -10,8 +11,11 @@ interface CardComponentsProps {
 const CardComponents = ({
   chunkedArray,
   cardsBackgroundColors,
+  
   handleCardClick,
 }: CardComponentsProps) => {
+    const { state } = useCardGameContext();
+  
   return (
     <>
       {chunkedArray.map((row, rowIndex) => (
@@ -27,7 +31,7 @@ const CardComponents = ({
           key={`col-${rowIndex}-${cardIndex}`}
           onClick={() => handleCardClick(card)}
         >
-          <p className="card__text">{card}</p>
+          <p   className={`card__text ${state.displayCardText ? "" : "card__text--display"}`}>{card}</p>
         </Col>
       );
     })}

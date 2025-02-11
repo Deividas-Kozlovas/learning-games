@@ -19,6 +19,7 @@ import {
 import { getRandomLightColor } from "../helpers/RandomColorGeneratorHelper";
 import { startTimer, endTimer } from "../helpers/CountTimeHelper";
 import {
+  SET_DISPLAY_TEXT,
   SET_SOUND,
   SET_TALKING_SOUND,
   SET_SHUFFLED_ITEMS,
@@ -34,6 +35,7 @@ import correctSound from "../assets/sounds/correct-sound.wav";
 import wrongSound from "../assets/sounds/wrong-sound.wav";
 
 const initialState: CardGameState = {
+  displayCardText: true,
   soundON: true,
   talkingSoundON: true,
   currentItemIndex: 0,
@@ -116,6 +118,7 @@ export const CardGameProvider = ({ children }: { children: ReactNode }) => {
           payload: nextIndex,
         });
         if (nextIndex === state.initialItems.length) {
+          dispatch({ type: SET_DISPLAY_TEXT, payload: true});
           dispatch({ type: SET_GAME_OVER, payload: true });
           dispatch({ type: SET_ELAPSED_TIME, payload: endTimer() });
           dispatch({ type: SET_CURRENT_ITEMS_INDEX_TO_FIND, payload: 0 });

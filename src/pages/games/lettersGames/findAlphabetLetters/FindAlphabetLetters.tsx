@@ -11,13 +11,15 @@ import "./findAlphabetLettersStyles.scss";
 import { useCardGameContext } from "../../../../context/CardGameContext";
 import sound from "../../../../assets/images/icons/sound.svg";
 import talkingSound from "../../../../assets/images/icons/talking-sound.svg";
+import { SET_DISPLAY_TEXT } from "../../../../actions/cardGameActions";
 
 function FindAlphabetLetters() {
-  const { state, startGame, handleCardClick, toggleSound } =
+  const { state, startGame, handleCardClick, toggleSound , dispatch} =
     useCardGameContext();
 
   useEffect(() => {
     startGame(alphabet);
+    dispatch({ type: SET_DISPLAY_TEXT, payload: true});
   }, []);
 
   return (

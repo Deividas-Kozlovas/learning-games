@@ -9,8 +9,10 @@ export const SET_CARDS_BACKGROUND_COLORS = "SET_CARDS_BACKGROUND_COLORS";
 export const SET_IS_ANSWER_CORRECT = "SET_IS_ANSWER_CORRECT";
 export const SET_GAME_OVER = "SET_GAME_OVER";
 export const SET_ELAPSED_TIME = "SET_ELAPSED_TIME";
+export const SET_DISPLAY_TEXT = "SET_DISPLAY_TEXT";
 
 export interface CardGameState {
+  displayCardText: boolean;
   soundON: boolean;
   talkingSoundON: boolean;
   currentItemIndex: number;

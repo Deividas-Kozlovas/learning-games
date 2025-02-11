@@ -10,15 +10,19 @@ import { colors, colorsENG } from "./findColorByWordData";
 import { useCardGameContext } from "../../../../context/CardGameContext";
 import sound from "../../../../assets/images/icons/sound.svg";
 import talkingSound from "../../../../assets/images/icons/talking-sound.svg";
+import {
+  SET_DISPLAY_TEXT,
+} from "../../../../actions/cardGameActions";
 
 function FindColorByWord() {
-  const { state, startGame, handleCardClick, toggleSound } = useCardGameContext();
+  const { state, startGame, handleCardClick, toggleSound, dispatch } = useCardGameContext();
 
   const [newColor, setNewColor] = useState<(string | number)[]>([]);
 
   useEffect(() => {
     startGame(colors); 
-    setNewColor(colorsENG); 
+    setNewColor(colorsENG);
+    dispatch({ type: SET_DISPLAY_TEXT, payload: false});
   }, []);
 
   useEffect(() => {
