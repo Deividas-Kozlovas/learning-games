@@ -6,7 +6,7 @@ import lettersButton from "../../assets/images/buttons/letters-button.jpeg";
 import colorsButton from "../../assets/images/buttons/colors-button.jpeg";
 import wordsButton from "../../assets/images/buttons/words-button.jpeg";
 import confettiImage from "../../assets/images/background/confetti-doodles.svg";
-import back from "../../assets/output.webm"
+// import back from "../../assets/output.webm"
 
 function HomePage() {
   return (
@@ -71,7 +71,7 @@ function HomePage() {
             </Link>
           </Col>
           <Col className="select-game__selector">
-            <Link to="/find-number-by-word">
+            <Link to="/rask-virtuves-reikmenys">
               <Button
                 className="select-game__text select-game__text--word-games"
                 variant="primary"
