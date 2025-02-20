@@ -3,7 +3,7 @@ import "./CardComponentStyle.scss";
 import { useCardGameContext } from "../../../context/CardGameContext";
 
 interface CardComponentsProps {
-  chunkedArray: (string[] | number[])[]; // Correctly typed chunked array
+  chunkedArray: (string[] | number[])[];
   cardsBackgroundColors: string[];
   handleCardClick: (card: string | number) => void;
 }
@@ -11,32 +11,38 @@ interface CardComponentsProps {
 const CardComponents = ({
   chunkedArray,
   cardsBackgroundColors,
-  
+
   handleCardClick,
 }: CardComponentsProps) => {
-    const { state } = useCardGameContext();
-  
+  const { state } = useCardGameContext();
+
   return (
     <>
       {chunkedArray.map((row, rowIndex) => (
-  <Row key={`row-${rowIndex}`}>
-    {row.map((card, cardIndex) => {
-      const colorIndex = (rowIndex * row.length + cardIndex) % 9; // Cycle from 0 to 8
-      return (
-        <Col
-          style={{
-            backgroundColor: cardsBackgroundColors[colorIndex], // Always within bounds
-          }}
-          className="card"
-          key={`col-${rowIndex}-${cardIndex}`}
-          onClick={() => handleCardClick(card)}
-        >
-          <p   className={`card__text ${state.displayCardText ? "" : "card__text--display"}`}>{card}</p>
-        </Col>
-      );
-    })}
-  </Row>
-))}
+        <Row key={`row-${rowIndex}`}>
+          {row.map((card, cardIndex) => {
+            const colorIndex = (rowIndex * row.length + cardIndex) % 9;
+            return (
+              <Col
+                style={{
+                  backgroundColor: cardsBackgroundColors[colorIndex],
+                }}
+                className="card"
+                key={`col-${rowIndex}-${cardIndex}`}
+                onClick={() => handleCardClick(card)}
+              >
+                <p
+                  className={`card__text ${
+                    state.displayCardText ? "" : "card__text--display"
+                  }`}
+                >
+                  {card}
+                </p>
+              </Col>
+            );
+          })}
+        </Row>
+      ))}
     </>
   );
 };

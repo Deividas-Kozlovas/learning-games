@@ -1,30 +1,33 @@
 import { useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
-import ImageCardComponents from "../../../../components/gameComponents/cardComponent/ImageCardComponent";
-import FeedbackMessageComponent from "../../../../components/gameComponents/feedbackMessageComponent/FeedbackMessageComponent";
-import ProgressComponent from "../../../../components/gameComponents/progressComponent/ProgressComponent";
-import GameOverComponent from "../../../../components/gameComponents/gameOverComponent/GameOverComponent";
+import ImageCardComponents from "../../../components/gameComponents/cardComponent/ImageCardComponent";
+import FeedbackMessageComponent from "../../../components/gameComponents/feedbackMessageComponent/FeedbackMessageComponent";
+import ProgressComponent from "../../../components/gameComponents/progressComponent/ProgressComponent";
+import GameOverComponent from "../../../components/gameComponents/gameOverComponent/GameOverComponent";
 
-import { bathroomItems } from "./FindBathroomItemsByWordData";
-import { useCardGameContext } from "../../../../context/CardGameContext";
-import sound from "../../../../assets/images/icons/sound.svg";
-import talkingSound from "../../../../assets/images/icons/talking-sound.svg";
-import { SET_DISPLAY_TEXT } from "../../../../actions/cardGameActions";
+import { useCardGameContext } from "../../../context/CardGameContext";
+import sound from "../../../assets/images/icons/sound.svg";
+import talkingSound from "../../../assets/images/icons/talking-sound.svg";
+import { SET_DISPLAY_TEXT } from "../../../actions/cardGameActions";
 
-function FindKitchenItemsByWord() {
+interface FindImageByWordProps {
+  findItemsByWords: string[]; // Adjust this type based on what `FindKitchenItemsByWordData` contains
+}
+
+const FindImageByWord = ({ findItemsByWords }: FindImageByWordProps) => {
   const { state, startGame, handleCardClick, toggleSound, dispatch } =
     useCardGameContext();
 
   useEffect(() => {
-    startGame(bathroomItems);
+    startGame(findItemsByWords);
     dispatch({ type: SET_DISPLAY_TEXT, payload: true });
   }, []);
 
   return (
     <div className="find-colors-by-words-background">
       <ProgressComponent
-        progress={(state.currentItemIndex / bathroomItems.length) * 100}
+        progress={(state.currentItemIndex / findItemsByWords.length) * 100}
       />
       <Container>
         <Row>
@@ -33,7 +36,7 @@ function FindKitchenItemsByWord() {
             style={{ backgroundColor: "rgb(151, 212, 159)" }}
           >
             <p className="card__text">
-              {bathroomItems[state.currentItemIndex]}
+              {findItemsByWords[state.currentItemIndex]}
             </p>
             <img
               onClick={() => toggleSound("sound")}
@@ -60,6 +63,6 @@ function FindKitchenItemsByWord() {
       {state.gameOver && <GameOverComponent />}
     </div>
   );
-}
+};
 
-export default FindKitchenItemsByWord;
+export default FindImageByWord;
