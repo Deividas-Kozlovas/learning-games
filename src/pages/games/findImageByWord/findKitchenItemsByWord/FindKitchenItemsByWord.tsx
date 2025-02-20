@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
-import ImageCardComponents from "../../../../components/gameComponents/ImageCardComponent/ImageCardComponent";
+import ImageCardComponents from "../../../../components/gameComponents/cardComponent/ImageCardComponent";
 import FeedbackMessageComponent from "../../../../components/gameComponents/feedbackMessageComponent/FeedbackMessageComponent";
 import ProgressComponent from "../../../../components/gameComponents/progressComponent/ProgressComponent";
 import GameOverComponent from "../../../../components/gameComponents/gameOverComponent/GameOverComponent";
@@ -10,16 +10,15 @@ import { kitchenItems } from "./findKitchenItemsByWordData";
 import { useCardGameContext } from "../../../../context/CardGameContext";
 import sound from "../../../../assets/images/icons/sound.svg";
 import talkingSound from "../../../../assets/images/icons/talking-sound.svg";
-import {
-  SET_DISPLAY_TEXT,
-} from "../../../../actions/cardGameActions";
+import { SET_DISPLAY_TEXT } from "../../../../actions/cardGameActions";
 
 function FindKitchenItemsByWord() {
-  const { state, startGame, handleCardClick, toggleSound, dispatch } = useCardGameContext();
+  const { state, startGame, handleCardClick, toggleSound, dispatch } =
+    useCardGameContext();
 
   useEffect(() => {
-    startGame(kitchenItems); 
-    dispatch({ type: SET_DISPLAY_TEXT, payload: true});
+    startGame(kitchenItems);
+    dispatch({ type: SET_DISPLAY_TEXT, payload: true });
   }, []);
 
   return (

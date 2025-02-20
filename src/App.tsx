@@ -5,7 +5,7 @@ import FindAlphabetLetters from "./pages/games/lettersGames/findAlphabetLetters/
 import FindColorByWord from "./pages/games/colorGames/findColorByWord/FindColorByWord";
 import { CardGameProvider } from "./context/CardGameContext";
 import "bootstrap/dist/css/bootstrap.min.css";
-import FindKitchenItemsByWord from "./pages/games/findImageByWord/findKitchenItemsByWord/FindKitchenItemsByWord";
+import FindBathroomItemsByWord from "./pages/games/findImageByWord/FindBathroomItemsByWord/FindBathroomItemsByWord";
 
 function App() {
   return (
@@ -19,7 +19,10 @@ function App() {
             element={<FindAlphabetLetters />}
           />
           <Route path="/reasti-spalvas" element={<FindColorByWord />} />
-          <Route path="/rask-virtuves-reikmenys" element={<FindKitchenItemsByWord />} />
+          <Route
+            path="/rask-vonios-reikmenys"
+            element={<FindBathroomItemsByWord />}
+          />
         </Routes>
       </Router>
     </CardGameProvider>

@@ -1,7 +1,8 @@
 import { Row, Col } from "react-bootstrap";
+import "./CardComponentStyle.scss";
 
 interface CardComponentsProps {
-  chunkedArray: (string[] | number[])[]; // Correctly typed chunked array
+  chunkedArray: (string[] | number[])[];
   cardsBackgroundColors: string[];
   handleCardClick: (card: string | number) => void;
 }
@@ -11,25 +12,24 @@ const ImageCardComponent = ({
   cardsBackgroundColors,
   handleCardClick,
 }: CardComponentsProps) => {
-
   return (
     <>
       {chunkedArray.map((row, rowIndex) => (
         <Row key={`row-${rowIndex}`}>
           {row.map((card, cardIndex) => {
-            const colorIndex = (rowIndex * row.length + cardIndex) % 9; // Cycle from 0 to 8
+            const colorIndex = (rowIndex * row.length + cardIndex) % 9;
             return (
               <Col
                 style={{
-                  backgroundColor: cardsBackgroundColors[colorIndex], // Always within bounds
+                  backgroundColor: cardsBackgroundColors[colorIndex],
                 }}
                 className="card"
                 key={`col-${rowIndex}-${cardIndex}`}
                 onClick={() => handleCardClick(card)}
               >
                 <img
-                  src={`path_to_images/${card}.png`} // Replace with actual image source logic
-                  alt={`Card ${card}`}
+                  src={`src/assets/images/findImagesByWords/bathroom/${card}.png`}
+                  alt={`${card}`}
                   className="card__image"
                 />
               </Col>

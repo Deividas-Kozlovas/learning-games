@@ -11,7 +11,7 @@ import confettiImage from "../../assets/images/background/confetti-doodles.svg";
 function HomePage() {
   return (
     <div className="select-game">
-       {/* <video 
+      {/* <video 
         autoPlay 
         loop 
         muted 
@@ -71,7 +71,7 @@ function HomePage() {
             </Link>
           </Col>
           <Col className="select-game__selector">
-            <Link to="/rask-virtuves-reikmenys">
+            <Link to="/rask-vonios-reikmenys">
               <Button
                 className="select-game__text select-game__text--word-games"
                 variant="primary"

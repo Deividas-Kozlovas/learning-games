@@ -10,43 +10,38 @@ import { colors, colorsENG } from "./findColorByWordData";
 import { useCardGameContext } from "../../../../context/CardGameContext";
 import sound from "../../../../assets/images/icons/sound.svg";
 import talkingSound from "../../../../assets/images/icons/talking-sound.svg";
-import {
-  SET_DISPLAY_TEXT,
-} from "../../../../actions/cardGameActions";
+import { SET_DISPLAY_TEXT } from "../../../../actions/cardGameActions";
+import "./findColorByWordStyles.scss";
 
 function FindColorByWord() {
-  const { state, startGame, handleCardClick, toggleSound, dispatch } = useCardGameContext();
+  const { state, startGame, handleCardClick, toggleSound, dispatch } =
+    useCardGameContext();
 
   const [newColor, setNewColor] = useState<(string | number)[]>([]);
 
   useEffect(() => {
-    startGame(colors); 
+    startGame(colors);
     setNewColor(colorsENG);
-    dispatch({ type: SET_DISPLAY_TEXT, payload: false});
+    dispatch({ type: SET_DISPLAY_TEXT, payload: false });
   }, []);
 
   useEffect(() => {
-    // Get the index in shuffledItems where we want to add the color
-    const indexToAddColorOn = state.shuffledItems.indexOf(colors[state.currentItemIndex]);
+    const indexToAddColorOn = state.shuffledItems.indexOf(
+      colors[state.currentItemIndex]
+    );
 
-    // Only proceed if the color index is found
     if (indexToAddColorOn !== -1) {
-      // Create a new array by copying the colorsENG array
-      const updatedNewColor = [...colorsENG]
+      const updatedNewColor = [...colorsENG];
 
-      // Swap the colors
-      const temp = updatedNewColor[indexToAddColorOn]; // Store the color at the target index
-      updatedNewColor[indexToAddColorOn] = colorsENG[state.currentItemIndex]; // Assign the new color
-      updatedNewColor[state.currentItemIndex] = temp; // Place the old color in the current index
+      const temp = updatedNewColor[indexToAddColorOn];
+      updatedNewColor[indexToAddColorOn] = colorsENG[state.currentItemIndex];
+      updatedNewColor[state.currentItemIndex] = temp;
 
-      // Update the newColor state with the swapped array
       setNewColor(updatedNewColor);
-
-    } 
-  }, [state.currentItemIndex, state.shuffledItems]); // Re-run when currentItemIndex or shuffledItems change
-
+    }
+  }, [state.currentItemIndex, state.shuffledItems]);
   return (
-    <div className="find-alphabet-letters-game-background">
+    <div className="find-colors-by-words-background">
       <ProgressComponent
         progress={(state.currentItemIndex / colors.length) * 100}
       />

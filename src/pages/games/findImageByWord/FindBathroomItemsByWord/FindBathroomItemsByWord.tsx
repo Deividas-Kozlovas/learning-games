@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
-import ImageCardComponents from "../../../../components/gameComponents/ImageCardComponent/ImageCardComponent";
+import ImageCardComponents from "../../../../components/gameComponents/cardComponent/ImageCardComponent";
 import FeedbackMessageComponent from "../../../../components/gameComponents/feedbackMessageComponent/FeedbackMessageComponent";
 import ProgressComponent from "../../../../components/gameComponents/progressComponent/ProgressComponent";
 import GameOverComponent from "../../../../components/gameComponents/gameOverComponent/GameOverComponent";
@@ -22,7 +22,7 @@ function FindKitchenItemsByWord() {
   }, []);
 
   return (
-    <div className="find-alphabet-letters-game-background">
+    <div className="find-colors-by-words-background">
       <ProgressComponent
         progress={(state.currentItemIndex / bathroomItems.length) * 100}
       />

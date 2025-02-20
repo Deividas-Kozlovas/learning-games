@@ -1,6 +1,6 @@
 export const bathroomItems: string[] = [
   "Dušo galvutė", // Showerhead
-  "Maišytuvas", // Faucet
+  "Kranas maišytuvas", // Faucet
   "Vonia", // Bathtub
   "Dušo užuolaida", // Shower curtain
   "Rankšluostis", // Towel
@@ -8,8 +8,6 @@ export const bathroomItems: string[] = [
   "Muilas", // Soap
   "Muilo dozatorius", // Soap dispenser
   "Šampūnas", // Shampoo
-  "Kondicionierius", // Conditioner
-  "Dušo želė", // Shower gel
   "Dantų šepetėlis", // Toothbrush
   "Dantų pasta", // Toothpaste
   "Burnos skalavimo skystis", // Mouthwash
